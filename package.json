@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only server/src/main/main.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
   "devDependencies": {
     "@types/express": "^5.0.1",
     "@types/node": "^22.14.1",
