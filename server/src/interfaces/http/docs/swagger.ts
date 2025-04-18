@@ -1,10 +1,12 @@
 import swaggerAutogen from "swagger-autogen";
-import { schemas } from "./definitions/definitions";
+import { schemas } from "./schemas/schema";
+
 const doc = {
   info: {
     title: "QuickCall API",
   },
-  host: "localhost:3000",
+  host: "localhost:8000",
+  schemes: ["http", "https"],
   components: {
     schemas,
   },

@@ -2,7 +2,8 @@ export const authSchema = {
   RegisterSchema: {
     email: "user@example.com",
     password: "securePassword123",
-    name: "John Doe",
+    firstName: "John",
+    lastName: "Doe",
   },
 };
 

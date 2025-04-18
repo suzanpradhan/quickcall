@@ -7,7 +7,10 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/"
+      "url": "http://localhost:8000/"
+    },
+    {
+      "url": "https://localhost:8000/"
     }
   ],
   "paths": {
@@ -49,9 +52,13 @@
             "type": "string",
             "example": "securePassword123"
           },
-          "name": {
+          "firstName": {
             "type": "string",
-            "example": "John Doe"
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
           }
         }
       }

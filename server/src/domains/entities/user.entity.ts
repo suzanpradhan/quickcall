@@ -1,3 +1,5 @@
+import { UserDTO } from "@/interfaces/http/dtos/user";
+
 export class User {
   public id?: string;
   public firstName: string;
@@ -17,5 +19,13 @@ export class User {
     this.lastName = props.lastName;
     this.email = props.email;
     this.password = props.password;
+  }
+
+  toUserDTO(): UserDTO {
+    return {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+    };
   }
 }

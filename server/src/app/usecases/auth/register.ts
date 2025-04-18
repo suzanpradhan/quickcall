@@ -14,8 +14,9 @@ export const RegisterUseCase = (userRepo: UserRepository) => {
         lastName: dto.lastName,
         password: hashedPassword,
       });
+
       const createdUser = await userRepo.create(user);
-      return user;
+      return createdUser.toUserDTO();
     },
   };
 };
