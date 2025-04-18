@@ -1,7 +1,7 @@
-import { db } from "server/src/core/drizzle/db";
-import { userTable } from "server/src/core/drizzle/schema";
-import { User } from "server/src/domains/entities/user.entity";
-import { UserRepository } from "server/src/domains/repositories/UserRepository";
+import { db } from "@/core/drizzle/db";
+import { userTable } from "@/core/drizzle/schema";
+import { User } from "@/domains/entities/user.entity";
+import { UserRepository } from "@/domains/repositories/UserRepository";
 
 export class UserRepositoryImpl implements UserRepository {
   async create(user: User): Promise<User> {

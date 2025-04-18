@@ -1,7 +1,7 @@
-import { hashPassword } from "server/src/core/utils/hash";
-import { User } from "server/src/domains/entities/user.entity";
-import { UserRepository } from "server/src/domains/repositories/UserRepository";
-import { RegisterDTO } from "server/src/interfaces/http/dtos/auth";
+import { hashPassword } from "@/core/utils/hash";
+import { User } from "@/domains/entities/user.entity";
+import { UserRepository } from "@/domains/repositories/UserRepository";
+import { RegisterDTO } from "@/interfaces/http/dtos/auth";
 
 export const RegisterUseCase = (userRepo: UserRepository) => {
   return {

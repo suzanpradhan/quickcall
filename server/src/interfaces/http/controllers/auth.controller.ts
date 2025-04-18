@@ -1,7 +1,7 @@
+import { RegisterUseCase } from "@/app/usecases/auth/register";
+import { container } from "@/core/di/container";
+import { UserRepository } from "@/domains/repositories/UserRepository";
 import { Request, Response } from "express";
-import { RegisterUseCase } from "server/src/app/usecases/auth/register";
-import { container } from "server/src/core/di/container";
-import { UserRepository } from "server/src/domains/repositories/UserRepository";
 
 export const registerController = async (req: Request, res: Response) => {
   /*  

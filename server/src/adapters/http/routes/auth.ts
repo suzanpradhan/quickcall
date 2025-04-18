@@ -1,5 +1,5 @@
+import { registerController } from "@/interfaces/http/controllers/auth.controller";
 import { Router } from "express";
-import { registerController } from "server/src/interfaces/http/controllers/auth.controller";
 
 const router = Router();
 
