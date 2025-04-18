@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only server/src/adapters/http/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only --require tsconfig-paths/register server/src/adapters/http/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
   },
@@ -24,6 +24,7 @@
     "drizzle-kit": "^0.31.0",
     "drizzle-orm": "^0.42.0",
     "express": "^5.1.0",
-    "pg": "^8.14.1"
+    "pg": "^8.14.1",
+    "tsconfig-paths": "^4.2.0"
   }
 }
