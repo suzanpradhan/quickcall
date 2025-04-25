@@ -1,7 +1,7 @@
 import { ChatRoom } from "@/domains/entities/chat.entity";
 import { ChatRoomRepository } from "@/domains/repositories/ChatRoomRepository";
 import { WithId } from "mongodb";
-import { connectMongo } from "../db/mongo";
+import { connectMongo } from "../db/mongo/db";
 
 export class ChatRoomRepoImpl implements ChatRoomRepository {
   async getRoom(roomId: string): Promise<ChatRoom | null> {

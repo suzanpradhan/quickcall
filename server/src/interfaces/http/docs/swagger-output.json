@@ -16,9 +16,7 @@
   "paths": {
     "/api/auth/register/": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Register a new user",
         "description": "Endpoint to register a new user",
         "responses": {
@@ -32,6 +30,28 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RegisterSchema"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login/": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login a user",
+        "description": "Endpoint to login a user",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginSchema"
               }
             }
           }
@@ -59,6 +79,19 @@
           "lastName": {
             "type": "string",
             "example": "Doe"
+          }
+        }
+      },
+      "LoginSchema": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@example.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "securePassword123"
           }
         }
       }
