@@ -1,6 +1,7 @@
 {
   "appId": "com.suzanpradhan.quickcall",
   "files": ["dist", "dist-electron"],
+  "extraResources": ["src/assets/**"],
   "icon": "./assets/quick_logo.png",
   "mac": {
     "target": "dmg"

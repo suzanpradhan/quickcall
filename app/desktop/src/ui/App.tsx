@@ -1,31 +1,72 @@
-import { useState } from "react";
-import "./App.css";
-import reactLogo from "./assets/react.svg";
+import {
+  ControlBar,
+  GridLayout,
+  ParticipantTile,
+  RoomAudioRenderer,
+  RoomContext,
+  useTracks,
+} from "@livekit/components-react";
+import "@livekit/components-styles";
+import { Room, Track } from "livekit-client";
+import { useEffect, useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0);
+const serverUrl = "wss://testlive-5ehytxp1.livekit.cloud";
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDUzMDkwMzEsImlzcyI6IkFQSXFBd1JFREw3VEtCZyIsIm5iZiI6MTc0NTMwMTgzMSwic3ViIjoicXVpY2tzdGFydCB1c2VyIHZuNng5aCIsInZpZGVvIjp7ImNhblB1Ymxpc2giOnRydWUsImNhblB1Ymxpc2hEYXRhIjp0cnVlLCJjYW5TdWJzY3JpYmUiOnRydWUsInJvb20iOiJxdWlja3N0YXJ0IHJvb20iLCJyb29tSm9pbiI6dHJ1ZX19.Q-1c_EYDa3jCyPSE9X7f3-yUTLqGjZukLpPE7GzOTzA";
+
+export default function App() {
+  const [room] = useState(
+    () =>
+      new Room({
+        // Optimize video quality for each participant's screen
+        adaptiveStream: true,
+        // Enable automatic audio/video quality optimization
+        dynacast: true,
+      })
+  );
+
+  // Connect to room
+  useEffect(() => {
+    let mounted = true;
+
+    const connect = async () => {
+      if (mounted) {
+        await room.connect(serverUrl, token);
+      }
+    };
+    connect();
+
+    return () => {
+      mounted = false;
+      room.disconnect();
+    };
+  }, [room]);
 
   return (
-    <>
-      <div>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <RoomContext.Provider value={room}>
+      <div data-lk-theme="default" className="w-full h-screen bg-amber-500">
+        <MyVideoConference />
+        <RoomAudioRenderer />
+        <ControlBar />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </RoomContext.Provider>
   );
 }
 
-export default App;
+function MyVideoConference() {
+  const tracks = useTracks(
+    [
+      { source: Track.Source.Camera, withPlaceholder: true },
+      { source: Track.Source.ScreenShare, withPlaceholder: false },
+    ],
+    { onlySubscribed: false }
+  );
+  return (
+    <GridLayout
+      tracks={tracks}
+      style={{ height: "calc(100vh - var(--lk-control-bar-height))" }}
+    >
+      <ParticipantTile />
+    </GridLayout>
+  );
+}
